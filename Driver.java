@@ -23,16 +23,10 @@ public class Driver {
         g.buildGraph(args[0]);
         int user_choice = -1;
         Scanner scan = new Scanner(System.in);
+
         while(running){
             displayGraphOptions();
             user_choice = getInput(scan);
-
-            if(user_choice == 1){
-                // TODO: Clear the screen
-                displayStatOptions();
-            } else if(user_choice == 2){
-                g.displayGraphStats();
-            }
             String search = selectChoice(user_choice);
             graphExploration(search, scan, g);
         }
@@ -58,7 +52,7 @@ public class Driver {
         if(!search.equals("new_map") && !search.equals("display_stats")){
             g.startJourney(search, scan);
         } else if(search.equals("display_stats")){
-
+            g.displayGraphStats();
         }else {
             File folder = new File("./maps");
             File[] listOfFiles = folder.listFiles();
@@ -85,39 +79,38 @@ public class Driver {
     private static String selectChoice(int choice){
         String searchName = "";
         if(choice == 1){
-            searchName = "DFS";
+            searchName = "display_stats";
             //System.out.println("Ah, silly goose. Gotta build this");
         } else if(choice == 2){
-            //System.out.println("Dang! 2 in a row");
-            searchName = "trans";
-        } else if(choice == 3){
-            System.out.println("Dijkstra? A noble man");
-            searchName = "Dijkstra";
-        } else if(choice == 4) {
-            System.out.println("Loading a new map? Sure thing... how does that go again?");
+            //System.out.println("Loading a new map? Sure thing... how does that go again?");
             searchName = "new_map";
-        } else{
+        }else if(choice == 3){
+            searchName = "DFS";
+        } else if(choice == 4){
+            searchName = "trans";
+        } else if(choice == 5) {
+            System.out.println("Dijkstra? A noble man");
+            searchName = "Dijkstra";           
+        } else if(choice == 6) {
             //System.out.println("It seems the simulation is broken...\nGoodbye");
+            System.exit(0);
+        } else {
+            System.out.println("Is my list a joke to you? Get out!\n");
             System.exit(0);
         }
         //System.out.println("searchName contains ====> " + searchName);
         return searchName;
     }
 
-    private static void displayStatOptions(){
-        System.out.println("========== Graph Searches ==========");
-        System.out.println("1. Depth First Search");
-        System.out.println("2. Transitive Closure");
-        System.out.println("3. Dijkstra's Shortest Path");
-       System.out.println("=============================");
-    }
-
     private static void displayGraphOptions(){
         System.out.println("========== Graph Options ==========");
-        System.out.println("1. Begin Searches");
-        System.out.println("2. Display Stats");
-        System.out.println("3. Load new graph");
-        System.out.println("4. Quit");
+        System.out.println(" 1. Display Stats");
+        System.out.println(" 2. Load new graph");
+        System.out.println("=============================");
+        System.out.println(" 3. Depth First Search");
+        System.out.println(" 4. Transitive Closure");
+        System.out.println(" 5. Dijkstra's Shortest Path");
+        System.out.println(" 6. Quit");
         System.out.println("=============================");
 
     }

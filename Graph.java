@@ -214,7 +214,10 @@ public class Graph {
     }
 
     public void displayGraphStats(){
-        System.out.println("\nVertex List: " + vertexList.toString() +
-                "\nAdjacency List: " + adjacencyList.toString());
+        for(int i = 0; i < vertexList.size(); i++){
+            System.out.println(vertexList.get(i).toString() +
+                  " " + adjacencyList.get(i));
+        }
+        System.out.println("\n");
     }
 }
