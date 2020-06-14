@@ -46,7 +46,7 @@ public class Graph {
     }
 
     public void startJourney(String searchName, Scanner input){
-        System.out.println("Reached startJourney");
+        //System.out.println("Reached startJourney");
         int source = -1;
         int dest = -1;
         //Scanner input = null;
@@ -72,9 +72,9 @@ public class Graph {
         }
 
         if(searchName.equals("DFS")){
-            System.out.println(depthFirstSearch(source, dest));
+            System.out.println("\nTHE DFS PATH: " + depthFirstSearch(source, dest) + "\n");
         } else if(searchName.equals("trans")){
-            System.out.println(transitiveClosure());
+            System.out.println("\nTRANSITIVE CLOSURE: " + transitiveClosure() + "\n");
         }
     }
 
@@ -104,6 +104,8 @@ public class Graph {
                     vertexList.add(new Vertex(i));
                 }
 
+                // This adds in the needed array lists for the 
+                // adjacencyList (the largest node + 1)
                 while(adjacencyList.size() < largest + 1){
                     adjacencyList.add(new ArrayList<>());
                 }
@@ -181,7 +183,7 @@ public class Graph {
             }
         }
         resetVertices();
-        return "No path exists between " + root + " and " + dest;
+        return "No path exists between " + root + " and " + dest + "\n";
     }
 
 
@@ -211,7 +213,7 @@ public class Graph {
         return closure;
     }
 
-    public void displayGraph(){
+    public void displayGraphStats(){
         System.out.println("\nVertex List: " + vertexList.toString() +
                 "\nAdjacency List: " + adjacencyList.toString());
     }
