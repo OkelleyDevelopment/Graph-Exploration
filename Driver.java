@@ -34,7 +34,7 @@ public class Driver {
         Scanner scan = new Scanner(System.in);
 
         while(running){
-            displayGraphOptions();
+            displayMenu();
             user_choice = getInput(scan);
             String search = selectChoice(user_choice);
             graphExploration(search, scan, g);
@@ -68,37 +68,74 @@ public class Driver {
     }
 
 
+    /**
+     * A static helper method that handles program direction by starting the
+     * journey for graph searches/analysis or displaying the stats or 
+     * loading in a new graph.
+     *
+     * @param search - a string with the process or search to complete
+     *
+     * @param scan - a scanner to accept user input for the graph loading
+     *
+     * @param g - a graph object to "recreate" in the graph loading process
+     *
+     * @return none
+     */
     private static void graphExploration(String search, Scanner scan, Graph g){
 
         if(!search.equals("new_map") && !search.equals("display_stats")){
             g.startJourney(search, scan);
         } else if(search.equals("display_stats")){
             g.displayGraphStats();
-        }else {
-            File folder = new File("./maps");
-            File[] listOfFiles = folder.listFiles();
-            int fileNum = -1;
+        }else { 
+            // Find, print out, and return the list of available graphs
+            File[] listOfFiles = displayAvailGraphs();
 
-            // TODO: Clear out the screen. 
-            System.out.println("\n========== Maps Available =========");
-            for(File file : listOfFiles){
-
-                if(file.isFile()){
-                    fileNum += 1;
-                    System.out.println("\t"+ fileNum + " " + file.getName());
-                }
-            }
-            
+            // Prompt user to choose a graph
             System.out.println("\nPlease choose from above...");
             int mapNum = scan.nextInt();
+
+            // Reset the Graph object to defaults
+            // And show the status of the loading process (in case of error)
             g = new Graph();
-            System.out.println("Loading the map " + 
-                    listOfFiles[mapNum] + "... ");
+            System.out.println("Loading " + listOfFiles[mapNum] + "... ");
             g.buildGraph("" + listOfFiles[mapNum]);
             System.out.println("Done.\n");
         }
     }
 
+    /**
+     * A static helper method to display the available graph text files 
+     * in the maps/ directory
+     *
+     * @param none
+     *
+     * @return listOfFiles - a File array
+     */
+    private static File[] displayAvailGraphs(){
+        File folder = new File("./maps");
+        File[] listOfFiles = folder.listFiles();
+        int fileNum = -1;
+
+        // TODO: Clear out the screen. 
+        System.out.println("\n========== Maps Available =========");
+        for(File file : listOfFiles){
+            if(file.isFile()){
+                fileNum += 1;
+                System.out.println("\t"+ fileNum + " " + file.getName());
+            }
+        }
+        return listOfFiles;
+    }
+
+    /**
+     * A static helper method that returns the process or search to be
+     * completed.
+     *
+     * @param choice - the integer value of the choice
+     * 
+     * @return searchName - the search or process to be completed
+     */
     private static String selectChoice(int choice){
         String searchName = "";
         if(choice == 1){
@@ -125,7 +162,14 @@ public class Driver {
         return searchName;
     }
 
-    private static void displayGraphOptions(){
+    /**
+     * A static helper method that displays the menu for the graph program.
+     *
+     * @param none
+     *
+     * @return none 
+     */
+    private static void displayMenu(){
         System.out.println("========== Graph Options ==========");
         System.out.println(" 1. Display Stats");
         System.out.println(" 2. Load new graph");
@@ -135,6 +179,5 @@ public class Driver {
         System.out.println(" 5. Dijkstra's Shortest Path");
         System.out.println(" 6. Quit");
         System.out.println("=============================");
-
     }
 }
