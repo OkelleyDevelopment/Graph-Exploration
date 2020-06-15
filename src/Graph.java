@@ -213,6 +213,8 @@ public class Graph {
         return closure;
     }
 
+
+//----------------- Helper Methods ------------------//
     public void displayGraphStats(){
         for(int i = 0; i < vertexList.size(); i++){
             System.out.println(vertexList.get(i).toString() +
