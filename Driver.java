@@ -12,16 +12,25 @@ import java.util.Scanner;
  */
 public class Driver {
 
+    /**
+     * This is the main method for the Graph Exploration Program.
+     *
+     * @param args - the map file path as a string 
+     */ 
     public static void main(String[] args){
         if(args.length < 1){
-            System.out.println("Usage: <mapName> <search>");
+            System.out.println("Usage: <mapName> ");
             System.exit(0);
         }
+        // Boolean for the current state of the program
         boolean running = true;
         // Start the Graph up
         Graph g = new Graph();
         g.buildGraph(args[0]);
+        // An int representing the value of the decision made 
         int user_choice = -1;
+        // A scanner object to collect user input throughout the program
+        // run time.
         Scanner scan = new Scanner(System.in);
 
         while(running){
@@ -30,9 +39,19 @@ public class Driver {
             String search = selectChoice(user_choice);
             graphExploration(search, scan, g);
         }
+        // Close out the scanner when finished. 
         scan.close();
     }
 
+    /**
+     * A helper method that gathers user input for decisions in the 
+     * graph exploration program.
+     *
+     * @param scan - a scanner object to collect input
+     *
+     *
+     * @return the user choice
+     */
     private static int getInput(Scanner scan){
         boolean validEntry = true;
         int user_choice = -1;
@@ -48,7 +67,9 @@ public class Driver {
         return user_choice;
     }
 
+
     private static void graphExploration(String search, Scanner scan, Graph g){
+
         if(!search.equals("new_map") && !search.equals("display_stats")){
             g.startJourney(search, scan);
         } else if(search.equals("display_stats")){
@@ -58,6 +79,8 @@ public class Driver {
             File[] listOfFiles = folder.listFiles();
             int fileNum = -1;
 
+            // TODO: Clear out the screen. 
+            System.out.println("\n========== Maps Available =========");
             for(File file : listOfFiles){
 
                 if(file.isFile()){
@@ -72,7 +95,7 @@ public class Driver {
             System.out.println("Loading the map " + 
                     listOfFiles[mapNum] + "... ");
             g.buildGraph("" + listOfFiles[mapNum]);
-            System.out.println("Done.");
+            System.out.println("Done.\n");
         }
     }
 
