@@ -33,6 +33,11 @@ public class Graph {
     
     
 
+    /**
+     * Constructor
+     *
+     * @param none
+     */
     public Graph(){
         this.vertexList = new ArrayList<>();
         this.adjacencyList = new ArrayList<>();
@@ -45,13 +50,22 @@ public class Graph {
 		stack = new Stack();
     }
 
+    /**
+     * A method that gets user input for the start node and end vertex that will
+     * then call the appropritate method for the process specified.
+     *
+     * @param serachName - the process or search name to be passed
+     *
+     * @param input - a scanner to gather the vertices needed
+     *
+     * @return none
+     */
     public void startJourney(String searchName, Scanner input){
         //System.out.println("Reached startJourney");
         int source = -1;
         int dest = -1;
         //Scanner input = null;
         try{
-
             //readInput = new Scanner()
 			System.out.println("Please enter the source vertex #: ");
             input = new Scanner(System.in);
@@ -78,6 +92,15 @@ public class Graph {
         }
     }
 
+
+    /**
+     * This method constructs the graph by reading the input file and 
+     * adding Vertex objects to the appropritate lists.
+     *
+     * @param inputFile - the string of the path to the input file
+     *
+     * @return none
+     */
     public void buildGraph(String inputFile){
         try{
             Scanner sc = new Scanner(new File(inputFile));
@@ -85,7 +108,6 @@ public class Graph {
             while(sc.hasNextLine()){
                 String mapData = sc.nextLine(); 
                 Scanner map = new Scanner(mapData);
-
                 int vertexID = 0;
                 int neighbor = 0;
                 try{
@@ -97,13 +119,13 @@ public class Graph {
                             " have a smudge!\nPlease try another map.");
                     System.exit(0);
                 }
-
                 int largest = Math.max(vertexID, neighbor);
+                System.out.println("VertexID: " + vertexID);
+                System.out.println("VertexID: " + vertexID);
 
                 for(int i = vertexList.size(); i < largest + 1; i++){
                     vertexList.add(new Vertex(i));
                 }
-
                 // This adds in the needed array lists for the 
                 // adjacencyList (the largest node + 1)
                 while(adjacencyList.size() < largest + 1){
@@ -139,14 +161,32 @@ public class Graph {
 
 
 
-    //------------ Pathfinding and Search Algorithms ----------------//
+    //------------ Pathfinding and Search Algorithms ----------------//    
     
+    /**
+     * A method to reset the vertices after a search has been executed, allowing
+     * multiple seraches to be performed on a single program loading.
+     *
+     * @param none
+     *
+     * @return none
+     */
     private void resetVertices(){
         for(int i = 0; i < vertexList.size(); i++){
             vertexList.get(i).setColor("White");
         }
     }
 
+    /**
+     * THis is the depth first search method, one of many algorithms 
+     * used when analyzing graphs and finding paths. 
+     *
+     * @param root - the root vertex
+     *
+     * @param dest - the destination vertex
+     *
+     * @return String - the string containing the path 
+     */
     public String depthFirstSearch(int root, int dest){
         vertexList.get(root).setColor("Blue");
         stack.push(root);
@@ -187,6 +227,15 @@ public class Graph {
     }
 
 
+
+    /**
+     * THis method is for calculating the transitive closure of an adjacency 
+     * matrix.
+     *
+     * @param none
+     *
+     * @return int[][] - a 2D metrix that holds the results.
+     */
     public int[][] transitiveClosure(){
         boolean[][] reached = new boolean[numOfVertices][numOfVertices];
         int[][] closure = new int[numOfVertices][numOfVertices];
@@ -215,6 +264,14 @@ public class Graph {
 
 
 //----------------- Helper Methods ------------------//
+
+    /**
+     * This method is used to display details about the current graph.
+     *
+     * @param none
+     *
+     * @return none
+     */
     public void displayGraphStats(){
         for(int i = 0; i < vertexList.size(); i++){
             System.out.println(vertexList.get(i).toString() +
