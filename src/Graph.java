@@ -28,7 +28,8 @@ public class Graph {
     // The number of total vertices in the vertexList
     private int numOfVertices;
 
-    // The adjacency matrix
+    // The adjacency matrix of the graph
+    // edges[x][y] is the number of edges from vertex X to vertex Y
     private int[][] adjMatrix;
     
     
@@ -229,7 +230,7 @@ public class Graph {
 
 
     /**
-     * THis method is for calculating the transitive closure of an adjacency 
+     * This method is for calculating the transitive closure of an adjacency 
      * matrix.
      *
      * @param none
