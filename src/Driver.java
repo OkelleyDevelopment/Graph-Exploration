@@ -84,7 +84,8 @@ public class Driver {
     private static void graphExploration(String search, Scanner scan, Graph g){
 
         // TODO: refactor to switch?
-        if(!search.equals("new_map") && !search.equals("display_stats")){
+        if(!search.equals("new_map") && !search.equals("display_stats") &&
+                !search.equals("cycle")){
             g.startJourney(search, scan);
         } else if(search.equals("display_stats")){
             g.displayGraphStats();
@@ -156,6 +157,7 @@ public class Driver {
         } else if(choice == 4){
             searchName = "trans";
         } else if(choice == 5) {
+            System.out.println("Ah yes, cycles do go round.");
             searchName = "cycle";           
         } else if(choice == 6) {
             //System.out.println("It seems the simulation is broken...\nGoodbye");
@@ -182,7 +184,7 @@ public class Driver {
         System.out.println("=============================");
         System.out.println(" 3. Depth First Search");
         System.out.println(" 4. Transitive Closure");
-        System.out.println(" 5. Dijkstra's Shortest Path");
+        System.out.println(" 5. Cycle Search");
         System.out.println(" 6. Quit");
         System.out.println("=============================");
     }

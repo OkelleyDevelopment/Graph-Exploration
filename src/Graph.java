@@ -110,7 +110,6 @@ public class Graph {
                     System.exit(0);
                 }
                 int largest = Math.max(vertexID, neighbor);
-                adjMatrix[vertexID][neighbor] = 1;
                 //System.out.println("VertexID: " + vertexID);
                 //System.out.println("neighbor: " + neighbor);
 
@@ -249,7 +248,7 @@ public class Graph {
                     // return true for a cycle 
                     if(vertexList.get(adjacent).getColor().equals(visited)){
                         return true;
-                    } else if(!(vertexList.get(adjacent).equals(popped))){
+                    } else if(!(vertexList.get(adjacent).getColor().equals(popped))){
                         // This keeps processing the vertices until
                         // a cycle is reached or is out of vertices
                         vertexList.get(adjacent).setColor(visited);
