@@ -83,11 +83,18 @@ public class Driver {
      */
     private static void graphExploration(String search, Scanner scan, Graph g){
 
+        // TODO: refactor to switch?
         if(!search.equals("new_map") && !search.equals("display_stats")){
             g.startJourney(search, scan);
         } else if(search.equals("display_stats")){
             g.displayGraphStats();
-        }else { 
+        } else if(search.equals("cycle")){
+            if(g.cycleSearch()){
+                System.out.println("A cycle does exist");
+            } else {
+                System.out.println("A cycle does not exist");
+            }
+        } else { 
             // Find, print out, and return the list of available graphs
             File[] listOfFiles = displayAvailGraphs();
 
@@ -149,8 +156,7 @@ public class Driver {
         } else if(choice == 4){
             searchName = "trans";
         } else if(choice == 5) {
-            System.out.println("Dijkstra? A noble man");
-            searchName = "Dijkstra";           
+            searchName = "cycle";           
         } else if(choice == 6) {
             //System.out.println("It seems the simulation is broken...\nGoodbye");
             System.exit(0);

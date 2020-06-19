@@ -24,13 +24,10 @@ public class Graph {
     // A stack for DFS
     private Stack stack;
     // A starting number to initalize our adjMatrix
-    private final int maxVertices = 25;
+    private final int maxVertices = 50;
     // The number of total vertices in the vertexList
     private int numOfVertices;
-
-    // The adjacency matrix of the graph
-    // edges[x][y] is the number of edges from vertex X to vertex Y
-    private int[][] adjMatrix;
+    //TODO: refactor the adjacency matrix to be of type ArrayList
     
     
 
@@ -42,12 +39,6 @@ public class Graph {
     public Graph(){
         this.vertexList = new ArrayList<>();
         this.adjacencyList = new ArrayList<>();
-        this.adjMatrix = new int[maxVertices][maxVertices];
-        for(int row = 0; row < 20; row++){
-            for(int col = 0; col < 20; col++){
-                adjMatrix[col][row] = 0;
-            }
-        }
 		stack = new Stack();
     }
 
@@ -88,8 +79,6 @@ public class Graph {
 
         if(searchName.equals("DFS")){
             System.out.println("\nTHE DFS PATH: " + depthFirstSearch(source, dest) + "\n");
-        } else if(searchName.equals("trans")){
-            System.out.println("\nTRANSITIVE CLOSURE: " + transitiveClosure() + "\n");
         }
     }
 
@@ -121,8 +110,9 @@ public class Graph {
                     System.exit(0);
                 }
                 int largest = Math.max(vertexID, neighbor);
-                System.out.println("VertexID: " + vertexID);
-                System.out.println("VertexID: " + vertexID);
+                adjMatrix[vertexID][neighbor] = 1;
+                //System.out.println("VertexID: " + vertexID);
+                //System.out.println("neighbor: " + neighbor);
 
                 for(int i = vertexList.size(); i < largest + 1; i++){
                     vertexList.add(new Vertex(i));
@@ -228,6 +218,59 @@ public class Graph {
     }
 
 
+    public boolean cycleSearch(){
+        // Flush the stack incase of inproper usage
+        stack.clear();
+
+        // A counter variable
+        int count = 0;
+        // Setting colors to used in the cycle search
+        String visited = "Red";
+        String popped = "Black";
+        
+        // Set the first vertex (zero)
+        vertexList.get(0).setColor(visited);
+        stack.push(0);
+
+        while(!stack.isEmpty()){
+            int peek = stack.peek();
+            ArrayList<Integer> temp = adjacencyList.get(peek);
+            
+            // Check to see if the stack is empty, if so, add the first vertex
+            if(temp.isEmpty()){
+                int poppedVertex = stack.pop();
+                vertexList.get(poppedVertex).setColor(popped);
+                count++;
+            } else {
+                // if the count is less than the size of adjacency list
+                // then iterate over the list
+                if(count < temp.size()){
+                    int adjacent = temp.get(count);
+                    // return true for a cycle 
+                    if(vertexList.get(adjacent).getColor().equals(visited)){
+                        return true;
+                    } else if(!(vertexList.get(adjacent).equals(popped))){
+                        // This keeps processing the vertices until
+                        // a cycle is reached or is out of vertices
+                        vertexList.get(adjacent).setColor(visited);
+                        stack.push(adjacent);
+                        count = 0;
+                    }
+                } else {
+                    // Get the next vertex to try assuming the visited
+                    // color has not been found yet.
+                    int poppedVertex = stack.pop();
+                    vertexList.get(poppedVertex).setColor(popped);
+                    count++;
+                }
+            }
+        }
+        // Reset the vertices before exiting
+        resetVertices();
+        // Return false in the event no cycle is found
+        return false;
+    }
+
 
     /**
      * This method is for calculating the transitive closure of an adjacency 
@@ -237,34 +280,39 @@ public class Graph {
      *
      * @return int[][] - a 2D metrix that holds the results.
      */
-    public int[][] transitiveClosure(){
-        boolean[][] reached = new boolean[numOfVertices][numOfVertices];
-        int[][] closure = new int[numOfVertices][numOfVertices];
-
-        for(int i = 0; i < numOfVertices; i++){
-            for(int j = 0; j < numOfVertices; j++){
-                if(adjMatrix[i][j] == 0){
-                    reached[i][j] = false;
-                } else{
-                    reached[i][j] = true;
-                }
-            }
-        }
-
-        for(int i = 0; i < numOfVertices; i++){
-            for(int j = 0; j < numOfVertices; j++){
-                if(reached[i][j] == false){
-                    closure[i][j] = 0;
-                } else {
-                    closure[i][j] = 1;
-                }
-            }
-        }
-        return closure;
+    public void transitiveClosure(){
+        System.out.println(" Need to program this still ... ");
     }
 
 
 //----------------- Helper Methods ------------------//
+
+
+    public void displayMatrix(int[][] adjMatrix){
+        for(int i = 0; i < numOfVertices; i++){
+            for(int j = 0; j < numOfVertices; j++){
+                System.out.print(adjMatrix[i][j] + " ");
+            }
+        }
+        System.out.println("\nEnd Transitive Closure\n");
+    }
+
+    public int bitwiseAND(int a, int b){
+        if(a == 1 && b == 1){
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public int bitwiseOR(int a, int b){
+        if(a == 0 && b == 0){
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
 
     /**
      * This method is used to display details about the current graph.
