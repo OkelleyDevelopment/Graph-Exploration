@@ -27,8 +27,8 @@ public class Graph {
     private final int maxVertices = 50;
     // The number of total vertices in the vertexList
     private int numOfVertices;
-    //TODO: refactor the adjacency matrix to be of type ArrayList
-    
+    // The adjMatrix
+    private int[][] adjMatrix;
     
 
     /**
@@ -39,7 +39,14 @@ public class Graph {
     public Graph(){
         this.vertexList = new ArrayList<>();
         this.adjacencyList = new ArrayList<>();
-		stack = new Stack();
+        this.adjMatrix = new int[maxVertices][maxVertices];
+
+        for(int i = 0; i < maxVertices; i++){
+            for(int j = 0; j < maxVertices; j++){
+                this.adjMatrix[i][j]= 0;
+            }
+        }
+		this.stack = new Stack();
     }
 
     /**
@@ -109,7 +116,9 @@ public class Graph {
                             " have a smudge!\nPlease try another map.");
                     System.exit(0);
                 }
+
                 int largest = Math.max(vertexID, neighbor);
+                adjMatrix[vertexID][neighbor] = 1;
                 //System.out.println("VertexID: " + vertexID);
                 //System.out.println("neighbor: " + neighbor);
 
@@ -142,6 +151,7 @@ public class Graph {
                 }   
             }
             sc.close();
+            numOfVertices = vertexList.size();
         } catch(FileNotFoundException e){
             System.out.println("That map is not available...");
             System.exit(0);
@@ -279,24 +289,66 @@ public class Graph {
      *
      * @return int[][] - a 2D metrix that holds the results.
      */
-    public void transitiveClosure(){
-        System.out.println(" Need to program this still ... ");
+    public int[][] transitiveClosure(){
+
+        //int[][] A = adjMatrix;
+        int[][] B = popMatrix(numOfVertices);
+
+        // Implementing Warshall's Algorithm
+        // Basing this algorithm from what i learned in this powerpoint
+        // https://cs.winona.edu/lin/cs440/ch08-2.pdf
+        for(int k = 0; k < numOfVertices; k++){
+            for(int i = 0; i < numOfVertices; i++){
+                for(int j = 0; j < numOfVertices; j++){
+                    // We can reduce this to a bitwise operation since 
+                    // zero and one are being compared.
+                    B[i][j] = bitwiseOr(adjMatrix[i][j], bitwiseAnd(adjMatrix[i][k], adjMatrix[k][j]));
+                    //System.out.println("B[" + i + "][" + j + "]");
+                }
+            }
+            // We copy the result back to the adjMatrix so the calculations
+            // can resume
+            for (int i = 0; i < numOfVertices; i++){
+                for (int j = 0; j < numOfVertices; j++){
+                    adjMatrix[i][j] = B[i][j];
+                    
+                }
+            }
+        }
+        return adjMatrix;
     }
 
 
 //----------------- Helper Methods ------------------//
 
-
-    public void displayMatrix(int[][] adjMatrix){
-        for(int i = 0; i < numOfVertices; i++){
-            for(int j = 0; j < numOfVertices; j++){
-                System.out.print(adjMatrix[i][j] + " ");
+    public static int[][] popMatrix(int nPop){
+        //create new matrix based on input param size
+        int[][] zeroMatrix = new int[nPop][nPop];
+        
+        //populate new matrix with all zero's
+        for (int t = 0; t < nPop; t++){
+            for (int y = 0; y < nPop; y++){
+                zeroMatrix[t][y] = 0;
             }
         }
-        System.out.println("\nEnd Transitive Closure\n");
+        
+        //returns new matrix filled with all zero's
+        return zeroMatrix;
     }
 
-    public int bitwiseAND(int a, int b){
+    public void displayMatrix(int[][] matrix){
+        //System.out.println("numOfVertices: " + numOfVertices);
+        System.out.println("\nBegin Transitive Closure:");
+        for(int i = 0; i < numOfVertices; i++){
+            for(int j = 0; j < numOfVertices; j++){
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("End Transitive Closure\n");
+    }
+
+    public int bitwiseAnd(int a, int b){
         if(a == 1 && b == 1){
             return 1;
         } else {
@@ -304,7 +356,7 @@ public class Graph {
         }
     }
 
-    public int bitwiseOR(int a, int b){
+    public int bitwiseOr(int a, int b){
         if(a == 0 && b == 0){
             return 0;
         } else {

@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.io.IOException;
 
 /**
  * The driver for my graph program. 
@@ -84,8 +85,7 @@ public class Driver {
     private static void graphExploration(String search, Scanner scan, Graph g){
 
         // TODO: refactor to switch?
-        if(!search.equals("new_map") && !search.equals("display_stats") &&
-                !search.equals("cycle")){
+        if(search.equals("DFS")){
             g.startJourney(search, scan);
         } else if(search.equals("display_stats")){
             g.displayGraphStats();
@@ -95,7 +95,10 @@ public class Driver {
             } else {
                 System.out.println("A cycle does not exist");
             }
-        } else { 
+        } else if(search.equals("trans")){
+            g.displayMatrix(g.transitiveClosure());
+        } 
+        else { 
             // Find, print out, and return the list of available graphs
             File[] listOfFiles = displayAvailGraphs();
 
@@ -125,7 +128,6 @@ public class Driver {
         File[] listOfFiles = folder.listFiles();
         int fileNum = -1;
 
-        // TODO: Clear out the screen. 
         System.out.println("\n========== Maps Available =========");
         for(File file : listOfFiles){
             if(file.isFile()){
