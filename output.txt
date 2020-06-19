@@ -1,0 +1,9 @@
+========== Graph Options ==========
+ 1. Display Stats
+ 2. Load new graph
+=============================
+ 3. Depth First Search
+ 4. Transitive Closure
+ 5. Cycle Search
+ 6. Quit
+=============================

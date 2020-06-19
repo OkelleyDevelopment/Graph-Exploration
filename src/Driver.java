@@ -108,7 +108,7 @@ public class Driver {
 
             // Reset the Graph object to defaults
             // And show the status of the loading process (in case of error)
-            g = new Graph();
+            //g = new Graph();
             System.out.println("Loading " + listOfFiles[mapNum] + "... ");
             g.buildGraph("" + listOfFiles[mapNum]);
             System.out.println("Done.\n");
