@@ -15,8 +15,16 @@ program execution.
                  
 
 ## Program Compilation and Execution
-1. 
-
+1. To Compile:
+```bash
+javac -d classes/ src/*.java 
+```
+2. To Run the program:
+```bash
+cd src/
+           
+java -cp ../classes/ Driver ../maps/<text file from maps> 
+```
 
 ## Known issues:
 * Need to make the Vertex list have a header and appropriate spacing.
