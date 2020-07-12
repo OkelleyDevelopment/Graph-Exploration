@@ -19,12 +19,16 @@ program execution.
 ```bash
 javac -d classes/ src/*.java 
 ```
-2. To Run the program:
+2. To Run the program, run the following command:
 ```bash
 cd src/
            
-java -cp ../classes/ Driver ../maps/<text file from maps> 
+java -cp classes/ Driver maps/<text file from maps> 
 ```
+
+## Graphs/ Maps
+![List of Graphs](./utils/graphs.png)
+
 
 ## Known issues:
 * Need to make the Vertex list have a header and appropriate spacing.
