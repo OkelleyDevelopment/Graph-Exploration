@@ -14,7 +14,24 @@ map directory. Thus, allowing the user to select different files in a single
 program execution.
                  
 
+## Prerequisites
+In order to experience the **Graph Exploration**, you will need to ensure
+the following dependencies are installed.
+
+1. Clone this repo: 
+```bash
+git clone https://github.com/OkelleyDevelopment/Graph-Exploration.git
+```
+       
+2. The Java SDK/JDK
+       
+```bash
+sudo apt-get install
+```
+
 ## Program Compilation and Execution
+NOTE: Run the following commands in the Project root directory
+               
 1. To Compile:
 ```bash
 javac -d classes/ src/*.java 
