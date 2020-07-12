@@ -14,17 +14,38 @@ map directory. Thus, allowing the user to select different files in a single
 program execution.
                  
 
+## Prerequisites
+In order to experience the **Graph Exploration**, you will need to ensure
+the following dependencies are installed.
+
+1. Clone this repo: 
+```bash
+git clone https://github.com/OkelleyDevelopment/Graph-Exploration.git
+```
+       
+2. The Java SDK/JDK
+       
+```bash
+sudo apt-get install
+```
+
 ## Program Compilation and Execution
+NOTE: Run the following commands in the Project root directory
+               
 1. To Compile:
 ```bash
 javac -d classes/ src/*.java 
 ```
-2. To Run the program:
+2. To Run the program, run the following command:
 ```bash
 cd src/
            
-java -cp ../classes/ Driver ../maps/<text file from maps> 
+java -cp classes/ Driver maps/<text file from maps> 
 ```
+
+## Graphs/ Maps
+![List of Graphs](./utils/graphs.png)
+
 
 ## Known issues:
 * Need to make the Vertex list have a header and appropriate spacing.
