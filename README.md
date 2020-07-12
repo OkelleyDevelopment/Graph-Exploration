@@ -1,20 +1,24 @@
 # Java Graph Exploration
 Author: Nicholas O'Kelley
 
-## What does it do?
-This simple program allows the user to load in with a map (a text file with a graph)
-and perform various graph seraches and analysis processes. The user can also,
-chose to load a different map and the program will display all files in the 
-map directory. This allowing the user to select different maps in a single 
-program execution.
-
-## The Purpose:
-This purpose of this program was to allow me to further my research in graph
+## Motivation
+This motivation of this program was to allow me to further my research in graph
 theory while also using a different programming language/paradigm to achieve
-a similar result. Most of the algorithms were learned from books and/or just 
-reading the wiki pages and watching some youtube videos.
+a similar result. Most of the algorithms were learned from books, general lectures
+and/or just reading the wiki pages and watching some youtube videos.
+               
+This program allows the user to load in a text file representing a graph 
+and perform various graph seraches and analysis processes.     
+The user can also, choose to load a different text file and the program will display all files in the 
+map directory. Thus, allowing the user to select different files in a single 
+program execution.
+                 
 
-## Know issues:
+## Program Compilation and Execution
+1. 
+
+
+## Known issues:
 * Need to make the Vertex list have a header and appropriate spacing.
 * Might be a couple uncaught exceptions, but will be patched as they are found
 * Clearing the screen wasnt working and needs to be looked at in the future
