@@ -126,7 +126,7 @@ public class Driver {
      * @return listOfFiles - a File array
      */
     private static File[] displayAvailGraphs(){
-        File folder = new File("./maps");
+        File folder = new File("./graphs");
         File[] listOfFiles = folder.listFiles();
         int fileNum = -1;
 

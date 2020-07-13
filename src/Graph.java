@@ -29,6 +29,9 @@ public class Graph {
     private int numOfVertices;
     // The adjMatrix
     private int[][] adjMatrix;
+
+    // The name of the current graph
+    private String name;
     
 
     /**
@@ -37,6 +40,7 @@ public class Graph {
      * @param none
      */
     public Graph(){
+        this.name = "";
         this.vertexList = new ArrayList<>();
         this.adjacencyList = new ArrayList<>();
         this.adjMatrix = new int[maxVertices][maxVertices];
@@ -47,6 +51,10 @@ public class Graph {
             }
         }
 		this.stack = new Stack();
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     /**
@@ -101,7 +109,7 @@ public class Graph {
     public void buildGraph(String inputFile){
         try{
             Scanner sc = new Scanner(new File(inputFile));
-
+            this.name = sc.nextLine();
             while(sc.hasNextLine()){
                 String mapData = sc.nextLine(); 
                 Scanner map = new Scanner(mapData);
@@ -373,6 +381,7 @@ public class Graph {
      * @return none
      */
     public void displayGraphStats(){
+        System.out.println("\n\t" + this.name);
         for(int i = 0; i < vertexList.size(); i++){
             System.out.println(vertexList.get(i).toString() +
                   " " + adjacencyList.get(i));
