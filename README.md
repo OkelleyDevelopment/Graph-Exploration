@@ -4,9 +4,9 @@
 Author: Nicholas O'Kelley
 
 ## Motivation
-The motivation was to allow me to further my research in graph theory
-while also using a different programming language/paradigm to achieve another 
-Graph based program. Most of the algorithms were learned from books, general lectures
+The motivation was to allow further research in graph theory as applied in
+Computer Science while also using an Object Oriented Language to achieve my goals.
+Most of the algorithms were learned from books, general lectures
 and/or just reading the wiki pages and watching some videos.
                
 This program allows the user to load in a text file representing a graph 
