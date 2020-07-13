@@ -1,11 +1,13 @@
+![Main Menu](./utils/menu.png)
+
 # Java Graph Exploration
 Author: Nicholas O'Kelley
 
 ## Motivation
-This motivation of this program was to allow me to further my research in graph
-theory while also using a different programming language/paradigm to achieve
-a similar result. Most of the algorithms were learned from books, general lectures
-and/or just reading the wiki pages and watching some youtube videos.
+The motivation was to allow further research in graph theory as applied in
+Computer Science while also using an Object Oriented Language to achieve my goals.
+Most of the algorithms were learned from books, general lectures
+and/or just reading the wiki pages and watching some videos.
                
 This program allows the user to load in a text file representing a graph 
 and perform various graph seraches and analysis processes.     
@@ -24,11 +26,6 @@ git clone https://github.com/OkelleyDevelopment/Graph-Exploration.git
 ```
        
 2. The Java SDK/JDK
-       
-```bash
-sudo apt-get install
-```
-
 ## Program Compilation and Execution
 NOTE: Run the following commands in the Project root directory
                
