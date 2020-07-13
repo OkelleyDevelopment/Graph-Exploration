@@ -58,11 +58,12 @@ public class Driver {
         int user_choice = -1;
         do{
             try{
+                System.out.print("\t > ");
                 user_choice = scan.nextInt();
                 validEntry = true;
             } catch (InputMismatchException e){
                 validEntry = false;
-                System.out.println("ERROR: Value is not an integer!");
+                System.out.println("\n\tERROR: Value is not an integer!");
             }
         } while(!validEntry);
         return user_choice;
@@ -90,10 +91,11 @@ public class Driver {
         } else if(search.equals("display_stats")){
             g.displayGraphStats();
         } else if(search.equals("cycle")){
+            System.out.print("\tDoes a Cycle Exist: ");
             if(g.cycleSearch()){
-                System.out.println("A cycle does exist");
+                System.out.print(" True\n");
             } else {
-                System.out.println("A cycle does not exist");
+                System.out.print(" False");
             }
         } else if(search.equals("trans")){
             g.displayMatrix(g.transitiveClosure());
@@ -103,15 +105,15 @@ public class Driver {
             File[] listOfFiles = displayAvailGraphs();
 
             // Prompt user to choose a graph
-            System.out.println("\nPlease choose from above...");
+            System.out.println("\n\tPlease choose from above...");
             int mapNum = scan.nextInt();
 
             // Reset the Graph object to defaults
             // And show the status of the loading process (in case of error)
             //g = new Graph();
-            System.out.println("Loading " + listOfFiles[mapNum] + "... ");
+            System.out.println("\tLoading " + listOfFiles[mapNum] + "... ");
             g.buildGraph("" + listOfFiles[mapNum]);
-            System.out.println("Done.\n");
+            System.out.println("\tDone.\n");
         }
     }
 
@@ -128,7 +130,7 @@ public class Driver {
         File[] listOfFiles = folder.listFiles();
         int fileNum = -1;
 
-        System.out.println("\n========== Maps Available =========");
+        System.out.println("\n\t==== Maps Available ====");
         for(File file : listOfFiles){
             if(file.isFile()){
                 fileNum += 1;
@@ -159,13 +161,13 @@ public class Driver {
         } else if(choice == 4){
             searchName = "trans";
         } else if(choice == 5) {
-            System.out.println("Ah yes, cycles do go round.");
+            System.out.println("\tAh yes, cycles do go round.");
             searchName = "cycle";           
         } else if(choice == 6) {
             //System.out.println("It seems the simulation is broken...\nGoodbye");
             System.exit(0);
         } else {
-            System.out.println("Is my list a joke to you? Get out!\n");
+            System.out.println("\tIs my list a joke to you? Get out!\n");
             System.exit(0);
         }
         //System.out.println("searchName contains ====> " + searchName);
@@ -180,14 +182,14 @@ public class Driver {
      * @return none 
      */
     private static void displayMenu(){
-        System.out.println("========== Graph Options ==========");
-        System.out.println(" 1. Display Stats");
-        System.out.println(" 2. Load new graph");
-        System.out.println("=============================");
-        System.out.println(" 3. Depth First Search");
-        System.out.println(" 4. Transitive Closure");
-        System.out.println(" 5. Cycle Search");
-        System.out.println(" 6. Quit");
-        System.out.println("=============================");
+        System.out.println("\n\t====== Graph Exploration ======");
+        System.out.println("\t  1. Display Stats");
+        System.out.println("\t  2. Load new graph");
+        System.out.println("\t===============================");
+        System.out.println("\t  3. Depth First Search");
+        System.out.println("\t  4. Transitive Closure");
+        System.out.println("\t  5. Cycle Search");
+        System.out.println("\t  6. Quit");
+        System.out.println("\t===============================");
     }
 }
