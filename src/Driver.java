@@ -157,15 +157,16 @@ public class Driver {
         clearScreen();
         File folder = new File("./graphs");
         File[] listOfFiles = folder.listFiles();
-        int fileNum = -1;
+        int fileNum = 0;
 
         System.out.println("\n\t==== Maps Available ====");
         for(File file : listOfFiles){
             if(file.isFile()){
                 fileNum += 1;
-                System.out.println("\t"+ fileNum + " " + file.getName());
+                System.out.println("\t "+ fileNum + ". " + file.getName());
             }
         }
+        System.out.println("\n\t========================");
         return listOfFiles;
     }
 
