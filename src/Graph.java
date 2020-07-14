@@ -72,18 +72,19 @@ public class Graph {
         int source = -1;
         int dest = -1;
         //Scanner input = null;
+        
         try{
             //readInput = new Scanner()
-			System.out.println("Please enter the source vertex #: ");
+			System.out.println("\n\tPlease enter the source vertex #: ");
             input = new Scanner(System.in);
 			source = input.nextInt();
 			if (source < 0){
-				System.out.println("Please try again with a "
+				System.out.println("\tPlease try again with a "
 						+ "valid source vertex #.");
 				System.exit(0);
 			}
 
-            System.out.println("Input the destination vertex #: ");
+            System.out.println("\tInput the destination vertex #: ");
             dest = input.nextInt();
 
             //input.close();
@@ -93,7 +94,7 @@ public class Graph {
         }
 
         if(searchName.equals("DFS")){
-            System.out.println("\nTHE DFS PATH: " + depthFirstSearch(source, dest) + "\n");
+            System.out.println("\n\tTHE DFS PATH: " + depthFirstSearch(source, dest) + "\n");
         }
     }
 
@@ -346,15 +347,15 @@ public class Graph {
 
     public void displayMatrix(int[][] matrix){
         //System.out.println("numOfVertices: " + numOfVertices);
-        System.out.println("\t\nBegin Transitive Closure:");
+        System.out.println("\n\tThe Transitive Closure:");
+        System.out.println("\t===============================");
         for(int i = 0; i < numOfVertices; i++){
-            System.out.print("\t");
+            System.out.print("\t  ");
             for(int j = 0; j < numOfVertices; j++){
                 System.out.print(matrix[i][j] + " ");
             }
             System.out.println();
         }
-        System.out.println("\tEnd Transitive Closure\n");
     }
 
     public int bitwiseAnd(int a, int b){

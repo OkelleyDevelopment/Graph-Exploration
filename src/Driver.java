@@ -35,7 +35,7 @@ public class Driver {
         Scanner scan = new Scanner(System.in);
 
         while(running){
-            clearScreen();
+            //clearScreen();
             displayMenu();
             user_choice = getInput(scan);
             String search = selectChoice(user_choice);
@@ -100,16 +100,15 @@ public class Driver {
      * @return none
      */
     private static void graphExploration(String search, Scanner scan, Graph g){
+        clearScreen();
 
         // TODO: refactor to switch?
         if(search.equals("DFS")){
-            clearScreen();
             g.startJourney(search, scan);
         } else if(search.equals("display_stats")){
-            clearScreen();
+            //clearScreen();
             g.displayGraphStats();
         } else if(search.equals("cycle")){
-            clearScreen();
             System.out.print("\tDoes a Cycle Exist: ");
             if(g.cycleSearch()){
                 System.out.print(" True\n");
@@ -117,11 +116,9 @@ public class Driver {
                 System.out.print(" False");
             }
         } else if(search.equals("trans")){
-            clearScreen();
             g.displayMatrix(g.transitiveClosure());
         } 
         else { 
-            clearScreen();
             // Find, print out, and return the list of available graphs
             File[] listOfFiles = displayAvailGraphs();
 
