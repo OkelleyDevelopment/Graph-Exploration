@@ -1,7 +1,7 @@
-![Main Menu](./utils/menu.png)
 
 # Java Graph Exploration
-Author: Nicholas O'Kelley
+
+![Main Menu](./utils/menu.png)
 
 ## Motivation
 The motivation was to allow further research in graph theory as applied in
@@ -45,13 +45,10 @@ java -cp classes/ Driver maps/<text file from maps>
 
 
 ## Known issues:
-* Need to make the Vertex list have a header and appropriate spacing.
 * Might be a couple uncaught exceptions, but will be patched as they are found
-* Clearing the screen wasnt working and needs to be looked at in the future
 
 ## Future Goals:
 I hope to add in more algorithms that handle graphs such as:
 * Dijkstra's Shortest Path Algorithm
 * Breadth First Search
 * A*
-* A functioning clear screen method
