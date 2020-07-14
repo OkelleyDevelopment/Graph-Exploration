@@ -1,7 +1,7 @@
-![Main Menu](./utils/menu.png)
 
 # Java Graph Exploration
-Author: Nicholas O'Kelley
+
+![Main Menu](./utils/menu.png)
 
 ## Motivation
 The motivation was to allow further research in graph theory as applied in
