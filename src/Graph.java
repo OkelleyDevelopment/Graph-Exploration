@@ -381,9 +381,9 @@ public class Graph {
      * @return none
      */
     public void displayGraphStats(){
-        System.out.println("\n\t" + this.name);
+        System.out.println("\n\t====== " + this.name + " ======");
         for(int i = 0; i < vertexList.size(); i++){
-            System.out.println(vertexList.get(i).toString() +
+            System.out.println("\t" + vertexList.get(i).toString() +
                   " " + adjacencyList.get(i));
         }
         System.out.println("\n");
