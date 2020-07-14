@@ -44,6 +44,20 @@ public class Driver {
         scan.close();
     }
 
+
+    /**
+     * A static method to clear the screen of the
+     * terminal while the program is running.
+     *
+     * @param none
+     *
+     * @return none
+     *
+     **/
+    public static void clearScreen() {
+        System.out.println("\033\143");
+    }
+
     /**
      * A helper method that gathers user input for decisions in the 
      * graph exploration program.
@@ -87,8 +101,10 @@ public class Driver {
 
         // TODO: refactor to switch?
         if(search.equals("DFS")){
+            clearScreen();
             g.startJourney(search, scan);
         } else if(search.equals("display_stats")){
+            clearScreen();
             g.displayGraphStats();
         } else if(search.equals("cycle")){
             System.out.print("\tDoes a Cycle Exist: ");
