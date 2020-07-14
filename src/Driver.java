@@ -35,6 +35,7 @@ public class Driver {
         Scanner scan = new Scanner(System.in);
 
         while(running){
+            clearScreen();
             displayMenu();
             user_choice = getInput(scan);
             String search = selectChoice(user_choice);
@@ -55,6 +56,7 @@ public class Driver {
      *
      **/
     public static void clearScreen() {
+        // These characters generate a large blank space
         System.out.println("\033\143");
     }
 
@@ -107,6 +109,7 @@ public class Driver {
             clearScreen();
             g.displayGraphStats();
         } else if(search.equals("cycle")){
+            clearScreen();
             System.out.print("\tDoes a Cycle Exist: ");
             if(g.cycleSearch()){
                 System.out.print(" True\n");
@@ -114,14 +117,17 @@ public class Driver {
                 System.out.print(" False");
             }
         } else if(search.equals("trans")){
+            clearScreen();
             g.displayMatrix(g.transitiveClosure());
         } 
         else { 
+            clearScreen();
             // Find, print out, and return the list of available graphs
             File[] listOfFiles = displayAvailGraphs();
 
             // Prompt user to choose a graph
             System.out.println("\n\tPlease choose from above...");
+            System.out.print("\t> ");
             int mapNum = scan.nextInt();
 
             // Reset the Graph object to defaults
@@ -129,6 +135,12 @@ public class Driver {
             //g = new Graph();
             System.out.println("\tLoading " + listOfFiles[mapNum] + "... ");
             g.buildGraph("" + listOfFiles[mapNum]);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                System.exit(0);
+            }
             System.out.println("\tDone.\n");
         }
     }
@@ -142,6 +154,7 @@ public class Driver {
      * @return listOfFiles - a File array
      */
     private static File[] displayAvailGraphs(){
+        clearScreen();
         File folder = new File("./graphs");
         File[] listOfFiles = folder.listFiles();
         int fileNum = -1;

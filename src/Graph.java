@@ -346,14 +346,15 @@ public class Graph {
 
     public void displayMatrix(int[][] matrix){
         //System.out.println("numOfVertices: " + numOfVertices);
-        System.out.println("\nBegin Transitive Closure:");
+        System.out.println("\t\nBegin Transitive Closure:");
         for(int i = 0; i < numOfVertices; i++){
+            System.out.print("\t");
             for(int j = 0; j < numOfVertices; j++){
                 System.out.print(matrix[i][j] + " ");
             }
             System.out.println();
         }
-        System.out.println("End Transitive Closure\n");
+        System.out.println("\tEnd Transitive Closure\n");
     }
 
     public int bitwiseAnd(int a, int b){
