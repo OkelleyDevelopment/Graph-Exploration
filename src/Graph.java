@@ -69,35 +69,51 @@ public class Graph {
      */
     public void startJourney(String searchName, Scanner input){
         //System.out.println("Reached startJourney");
-        int source = -1;
-        int dest = -1;
-        //Scanner input = null;
-        
-        try{
-            //readInput = new Scanner()
-			System.out.println("\n\tPlease enter the source vertex #: ");
-            input = new Scanner(System.in);
-			source = input.nextInt();
-			if (source < 0){
-				System.out.println("\tPlease try again with a "
-						+ "valid source vertex #.");
-				System.exit(0);
-			}
+        int source = readSource(input);
 
-            System.out.println("\tInput the destination vertex #: ");
-            dest = input.nextInt();
-
-            //input.close();
-        }catch(InputMismatchException e){
-            System.out.println("Check startJourney");
-            System.out.println(Arrays.toString(e.getStackTrace()));
-        }
+        int dest = readDestination(input);
 
         if(searchName.equals("DFS")){
             System.out.println("\n\tTHE DFS PATH: " + depthFirstSearch(source, dest) + "\n");
         }
     }
 
+    public int readSource(Scanner input){
+        int source = 0;
+        try{
+			System.out.print("\n\tPlease enter the source vertex #: " + 
+                    "\n\t > ");
+            input = new Scanner(System.in);
+			source = input.nextInt();
+			if (source < 0 || source > vertexList.size()){
+				System.out.println("\tPlease try again with a "
+						+ "valid source vertex #.");
+				System.exit(0);
+			}
+        }catch(InputMismatchException e){
+            System.out.println("Check readSource");
+        }
+        return source;
+    }
+
+    public int readDestination(Scanner input) {
+        int dest = 0;
+        try{
+			System.out.print("\n\tPlease enter the destination vertex #: " + 
+                    "\n\t > ");
+            input = new Scanner(System.in);
+		    dest = input.nextInt();
+			if (dest < 0 || dest > vertexList.size()){
+				System.out.println("\tPlease try again with a "
+						+ "valid destination vertex #.");
+				System.exit(0);
+			}
+        }catch(InputMismatchException e){
+            System.out.println("Check readDestination");
+        }
+
+        return dest;
+    }
 
     /**
      * This method constructs the graph by reading the input file and 
